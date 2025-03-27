@@ -21,7 +21,7 @@ MODEL_URLS = {
 }
 # Construir URLs completas
 for model in MODEL_URLS.values():
-    model['url'] = f"https://drive.google.com/uc?id={model['id']}"
+    model['url'] = f"https://drive.google.com/uc?id={model['id']}&confirm=t"
 @st.cache_resource
 def load_models():
     """Carrega modelos com tratamento robusto de erros"""
