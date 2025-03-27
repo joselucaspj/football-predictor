@@ -6,8 +6,6 @@ from utils.data_loader import load_match_data
 from utils.preprocessor import prepare_data
 from utils.model_predictor import predict_all_matches
 
-# Integração com Streamlit
-st.title("Seu App Streamlit")
 # Configurações da página
 st.set_page_config(layout="wide", page_title="Football Predictor Pro")
 
