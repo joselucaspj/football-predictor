@@ -8,7 +8,17 @@ from utils.model_predictor import predict_all_matches
 
 # Configurações da página
 st.set_page_config(layout="wide", page_title="Football Predictor Pro")
-
+# URLs dos modelos (substitua pelos seus IDs reais)
+MODEL_URLS = {
+    'modelo_predict_gols.pkl': {
+        'id': '1XpKUMdD05ZZ70gLDsFaC2wzATm_FCdz7',
+        'url': None  # Será construída automaticamente
+    },
+    'modelo_predict_winner.pkl': {
+        'id': '1b_uaLyGSBjxN8oLJMY0-rlXVbMlFu42R',
+        'url': None
+    }
+}
 @st.cache_resource
 def load_models():
     """Carrega modelos com tratamento robusto de erros"""
