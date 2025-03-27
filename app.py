@@ -5,11 +5,6 @@ import joblib
 from utils.data_loader import load_match_data
 from utils.preprocessor import prepare_data
 from utils.model_predictor import predict_all_matches
-import panel as pn
-pn.extension(comms='ipywidgets')  # Ou 'ipywidgets' se estiver no Jupyter
-
-# Seu componente Panel deve ter .servable()
-view = pn.Column("Seu conteúdo Panel aqui").servable()
 
 # Integração com Streamlit
 st.title("Seu App Streamlit")
