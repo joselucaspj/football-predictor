@@ -11,21 +11,28 @@ st.set_page_config(layout="wide", page_title="Football Predictor Pro")
 
 @st.cache_resource
 def load_models():
-    """Carrega modelos com cache do Google Drive"""
-    model_files = {
-        'modelo_predict_gols.pkl': os.environ.get('https://drive.google.com/uc?id=1XpKUMdD05ZZ70gLDsFaC2wzATm_FCdz7'),
-        'modelo_predict_winner.pkl': os.environ.get('https://drive.google.com/uc?id=1b_uaLyGSBjxN8oLJMY0-rlXVbMlFu42R')
-    }
+    """Carrega modelos com tratamento robusto de erros"""
+    models = {}
     
-    for filename, url in model_files.items():
-        if not os.path.exists(filename):
-            gdown.download(url, filename, quiet=False)
+    for filename, data in MODEL_URLS.items():
+        try:
+            if not os.path.exists(filename):
+                st.info(f"Baixando {filename}...")
+                gdown.download(
+                    url=data['url'],
+                    output=filename,
+                    quiet=False,
+                    fuzzy=True
+                )
+            
+            models[filename] = joblib.load(filename)
+            st.success(f"{filename} carregado com sucesso!")
+            
+        except Exception as e:
+            st.error(f"Falha ao carregar {filename}: {str(e)}")
+            st.stop()  # Interrompe o app se não carregar
     
-    return (
-        joblib.load('modelo_predict_gols.pkl'), 
-        joblib.load('modelo_predict_winner.pkl')
-    )
-
+    return models['modelo_predict_gols.pkl'], models['modelo_predict_winner.pkl']
 def main():
     st.title("⚽ Football Predictor Pro")
     
