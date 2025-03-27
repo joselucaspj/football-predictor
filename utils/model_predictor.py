@@ -126,7 +126,6 @@ def calculate_goal_averages(fixtures, historical, n_games):
                 else:
                   coluna_placar = f'{home_goals}x{away_goals}_Probability_HA'
                   fixtures.at[index, coluna_placar] = probability
-        pass
     
     return fixtures
 
