@@ -26,7 +26,7 @@ def predict_all_matches(data_dict, model_gols, model_winner, n_simulations=10000
     results = []
     num_simulations = 10000
     for _, row in fixtures.iterrows():
-         home_goals = row['Predicted_Goals_H']
+        home_goals = row['Predicted_Goals_H']
         away_goals = row['Predicted_Goals_A']
         # Realizando a simulação com o número de simulações ajustado
         simulated_results = simulate_match_predict(home_goals, away_goals, num_simulations=num_simulations)
